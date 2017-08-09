@@ -6,93 +6,161 @@ import PropTypes from 'prop-types';
 
 import {
     StyleSheet,
-    Text,
+    View,
+    Dimensions,
+    ViewPropTypes,
+    ActivityIndicator,
 } from 'react-native';
+import Loading from "./Loading";
+import {ErrorView} from "./ErrorView";
+import {EmptyView} from "./EmptyView";
+import Common from './constants';
 
-export default class MoneyFormatText extends Component {
+let window = {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+};
+
+export class MultiView extends Component {
 
     constructor(props) {
         super(props);
     }
 
     props: {
-        text: PropTypes.string,
-        textColor: Text.propTypes.color,
-        style: Text.propTypes.style,
-        bigTextFontSize: Text.propTypes.number,
-        smallTextFontSize: Text.propTypes.number,
-        textStyle: Text.propTypes.style,
         status: PropTypes.string,
-        hasRMB: PropTypes.bool,
-        RMB: PropTypes.string,
+        children: any,
+        onEmptyPress: () => void,
+        onErrorPress: () => void,
+        emptyImgSource: Image.propTypes.source,
+        errorImgSource: Image.propTypes.source,
+        emptyText: React.PropTypes.string,
+        errorText: React.PropTypes.string,
+        emptyBtnText: React.PropTypes.string,
+        errorBtnText: React.PropTypes.string,
+        emptyTextStyle: Text.propTypes.style,
+        errorTextStyle: Text.propTypes.style,
+        emptyButtonStyle: ViewPropTypes.style,
+        errorButtonStyle: ViewPropTypes.style,
+        emptyBgColor: View.propTypes.backgroundColor,
+        errorBgColor: View.propTypes.backgroundColor,
+        initHint: React.PropTypes.string,
+        loadingHint: React.PropTypes.string,
+        initHintStyle: Text.propTypes.style,
+        loadingHintStyle: Text.propTypes.style,
+        initIndicatorColor: ActivityIndicator.props.color,
+        loadingIndicatorColor: ActivityIndicator.props.color,
+        initContainerBgColor: View.propTypes.backgroundColor,
+        loadingContainerBgColor: View.propTypes.backgroundColor,
+    };
+
+    _onEmptyPress = () => {
+        this.props.onEmptyPress();
+    };
+
+    _onErrorPress = () => {
+        this.props.onErrorPress();
     };
 
     static defaultProps = {
-        textColor: '#E51111',
-        text: '',
-        status: "money",
-        RMB: "￥",
-        hasRMB: true,
+        status: Common.PageStatus.content,
     };
 
     render() {
-        let text = this.props.text;
-        if (this.props.status === "money") {
-            let style = this.props.style;
-            let RMB = this.props.RMB;
-            let start = text.substring(0, 1);
-            let strs = text.split('.');
-            let moneyInteger = start === RMB || !/^([0-9]|[\-]|[+])+$/.test(start) ? text.substring(1, strs[0].length) : strs[0];
-            let l = moneyInteger.length;
-            let t = "";
-            if (moneyInteger.indexOf(",") > 0 || l < 4) {
-                t = moneyInteger;
-            } else {
-                for (let i = 0; i < l; i++) {
-                    t += moneyInteger[i] + ((l - i - 1) % 3 === 0 && (i + 1) !== moneyInteger.length ? "," : "");
-                }
-            }
-            let moneyDecimal = strs[1] ? strs[1] : "00";
-            return (
-                <Text style={[styles.smallText, style, {
-                    color: this.props.textColor,
-                    fontSize: this.props.smallTextFontSize ? this.props.smallTextFontSize : 12
-                }]}>
-                    {this.props.hasRMB ? RMB : ''}
-                    <Text style={[styles.bigText, {
-                        color: this.props.textColor,
-                        fontSize: this.props.bigTextFontSize ? this.props.bigTextFontSize : 25
-                    }]}>
-                        {t}
-                        <Text style={[styles.smallText, {
-                            color: this.props.textColor,
-                            fontSize: this.props.smallTextFontSize ? this.props.smallTextFontSize : 12
-                        }]}>
-                            {moneyDecimal.length === 0 ? "" : '.'.concat(moneyDecimal)}
-                        </Text>
-                    </Text>
-                </Text>
-            )
-
-        } else {
-            let textStyle = this.props.textStyle;
-            return (
-                <Text style={[textStyle]}>
-                    {text}
-                </Text>
-            )
+        // 第一次加载等待的view
+        if (this.props.status === Common.PageStatus.init) {
+            return this.renderLoadingView();
+        } else if (this.props.status === Common.PageStatus.empty) {
+            //请求为空的view
+            return this.renderEmptyView();
+        } else if (this.props.status === Common.PageStatus.error) {
+            //请求失败view
+            return this.renderErrorView();
         }
+        //加载数据
+        return this.renderData();
+    }
+
+
+    //加载等待的view
+    renderLoadingView() {
+        return (
+            <Loading
+                hintStyle={this.props.initHintStyle}
+                indicatorColor={this.props.initIndicatorColor}
+                containerBgColor={this.props.initContainerBgColor}
+                loadingHint={this.props.initHint}/>
+        );
+    }
+
+    //加载失败view
+    renderErrorView() {
+        return (
+            <ErrorView
+                title={this.props.errorText}
+                imgSource={this.props.errorImgSource}
+                btnText={this.props.errorBtnText}
+                textStyle={this.props.errorTextStyle}
+                buttonStyle={this.props.errorButtonStyle}
+                backgroundColor={this.props.errorBgColor}
+                onPress={() => {
+                    this._onErrorPress();
+                }}/>
+        );
+    }
+
+    //加载失败view
+    renderEmptyView() {
+        return (
+            <EmptyView
+                title={this.props.emptyText}
+                imgSource={this.props.emptyImgSource}
+                btnText={this.props.emptyBtnText}
+                textStyle={this.props.emptyTextStyle}
+                buttonStyle={this.props.emptyButtonStyle}
+                backgroundColor={this.props.emptyBgColor}
+                onPress={() => {
+                    this._onEmptyPress();
+                }}/>
+        );
+    }
+
+
+    renderData() {
+        return (
+            <View style={{flex: 1,}} {...this.props}>
+                <View style={styles.position_container} {...this.props}>
+                    {this.props.children}
+                </View>
+                {this.props.status === Common.PageStatus.loading ? <View style={styles.just_loading_container}>
+                    <Loading
+                        hintStyle={this.props.loadingHintStyle}
+                        indicatorColor={this.props.loadingIndicatorColor}
+                        containerBgColor={this.props.loadingContainerBgColor}
+                        loadingHint={this.props.loadingHint}
+                    />
+                </View> : null}
+            </View>
+        );
     }
 }
 
 const styles = StyleSheet.create({
-    smallText: {
-        fontSize: 12,
-        color: "#E51111",
+    position_container: {
+        flex: 1,
+        backgroundColor: '#F5F6F7',
+        flexDirection: 'column',
     },
-    bigText: {
-        fontSize: 25,
-        color: "#E51111",
-        fontFamily: 'HelveticaNeue',
-    }
-})
+
+    just_loading_container: {
+        width: window.width,
+        height: window.height - 40,
+        backgroundColor: "transparent",
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: 0,
+        left: 0,
+    },
+
+});

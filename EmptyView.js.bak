@@ -1,5 +1,5 @@
 /**
- * Created by Lcs on 2017/5/19.
+ * Created by wuyunan on 2017/5/19.
  */
 import React from 'react';
 import {
@@ -9,10 +9,10 @@ import {
     Text,
     ViewPropTypes,
 } from 'react-native';
-import Common from './constants';
 import Buttom from "./NCButton";
+import Common from './constants';
 
-export class ErrorView extends React.PureComponent {
+export class EmptyView extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -30,19 +30,20 @@ export class ErrorView extends React.PureComponent {
         let hasBtn = this.props.btnText && this.props.btnText !== "";
         return (
             <View style={[styles.container, {backgroundColor: this.props.backgroundColor}]}>
-                <Image resizeMode='center' source={this.props.imgSource}/>
+                <Image resizeMode='stretch' source={this.props.imgSource} style={{height: 120, width: 120,}}/>
                 {hasTx ? <Text style={[styles.text_desc, this.props.textStyle]}>{this.props.title}</Text> : null}
-                {hasBtn ? <Buttom
-                    buttonStyle={[styles.btnContainer, this.props.buttonStyle]}
-                    onPress={() => this._onPress()}
-                    title={this.props.btnText}
-                    textStyle={styles.btn_text_style}/> : null}
+                {hasBtn ?
+                    <Buttom buttonStyle={[styles.btnContainer, this.props.buttonStyle]}
+                            onPress={() => this._onPress()}
+                            title={this.props.btnText}
+                            textStyle={styles.btn_text_style}/> : null
+                }
             </View>
         );
     }
 }
 
-ErrorView.propTypes = {
+EmptyView.propTypes = {
     onPress: React.PropTypes.func,
     imgSource: Image.propTypes.source,
     title: React.PropTypes.string,
@@ -52,11 +53,11 @@ ErrorView.propTypes = {
     backgroundColor: View.propTypes.backgroundColor,
 };
 
-ErrorView.defaultProps = {
-    imgSource: require('./ic_net_error.png'),
-    title: "从前有座山，山上没信号",
+EmptyView.defaultProps = {
+    imgSource: require("./ic_contractlist_empty.png"),
     backgroundColor: Common.Color.background_native,
 };
+
 
 const styles = StyleSheet.create({
     container: {
