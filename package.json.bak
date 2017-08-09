@@ -1,0 +1,21 @@
+{
+  "name": "react-native-multiview",
+  "version": "1.0.0",
+  "description": "\u0016This is a component that contains more than one common layer,Android and IOS are also available.",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016https://github.com/wslcsok/react-native-multiview.git"
+  },
+  "keywords": [
+    "199162ok"
+  ],
+  "author": "Lcs",
+  "license": "ISC"
+}
