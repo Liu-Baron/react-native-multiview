@@ -26,7 +26,7 @@ export class EmptyView extends React.PureComponent {
     };
 
     render() {
-        let hasTx = this.props.title & (this.props.title !== "");
+        let hasTx = this.props.title && (this.props.title !== "");
         let hasBtn = this.props.btnText && this.props.btnText !== "";
         return (
             <View style={[styles.container, {backgroundColor: this.props.backgroundColor}]}>
