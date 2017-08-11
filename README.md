@@ -66,7 +66,7 @@ import {PageStatus} from "react-native-multiview";
 ## Props
 
 Prop                        | Type   | Optional |       Default      | Description
---------------------------  | ------ | -------- | ------------------ | -----------
+------------------------  | ------ | -------- | ------------------ | -----------
 status                      | string | Yes      | PageStatus.content | status determines the current display of that page,which includes{PageStatus.error,PageStatus.empty,PageStatus.content,PageStatus.init,PageStatus.loading}five status.   
 onEmptyPress                | func   | Yes      |                    | Click event of empty page button
 onErrorPress                | func   | Yes      |                    | Click event of error page button
