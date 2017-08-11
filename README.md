@@ -1,5 +1,5 @@
 # react-native-multiview
-[![npm](https://img.shields.io/npm/v/1.0.2.svg)](https://www.npmjs.com/package/react-native-multiview)
+[![npm](https://img.shields.io/npm/v/1.0.3.svg)](https://www.npmjs.com/package/react-native-multiview)
 
 This is a component that contains more than one common layer,Android and IOS are also available.
 
