@@ -4,7 +4,6 @@
   "description": "\u0016This is a component that contains more than one common layer,Android and IOS are also available.",
   "main": "index.js",
   "directories": {
-    
     "example": "example"
   },
   "scripts": {
