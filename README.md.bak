@@ -1,9 +1,10 @@
 # react-native-multiview
 This is a component that contains more than one common layer,Android and IOS are also available.
-
+<<<<<<< HEAD
+=======
 
 ![multiview preview](https://github.com/wslcsok/react-native-multiview/blob/master/example.gif)
-
+>>>>>>> 8db5ae8ccb42beda4081944791dce29aee5963d1
 
 ## Installation
 npm install -save react-native-multiview
@@ -13,6 +14,9 @@ npm install -save react-native-multiview
 
 ```
 import {MultiView} from "react-native-multiview";
+<<<<<<< HEAD
+
+=======
 import {PageStatus} from "react-native-multiview";
 
  componentDidMount() {
@@ -59,7 +63,7 @@ import {PageStatus} from "react-native-multiview";
             </MultiView>
         );
     }
-
+>>>>>>> 8db5ae8ccb42beda4081944791dce29aee5963d1
 
 ```
 
