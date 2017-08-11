@@ -1,21 +1,15 @@
-# React-Native-MoneyFormatText
-这是一个对金额进行格式化的React-native组件，兼容ios和android
+# react-native-multiview
+This is a component that contains more than one common layer,Android and IOS are also available.
 
 ## Installation
-npm install -save react-native-moneyformattext
+npm install -save react-native-multiview
 
 ## Usage example
 
 
 ```
-import MoneyFormatText from "react-native-moneyformattext";
+import {MultiView} from "react-native-multiview";
 
-<MoneyFormatText text="1200000" bigTextFontSize={20} smallTextFontSize={12} hasRMB={true} RMB="$"/>
-<MoneyFormatText text="￥1200000" bigTextFontSize={20} smallTextFontSize={12} hasRMB={true}/>
-<MoneyFormatText text="￥1200000" bigTextFontSize={20} smallTextFontSize={12} hasRMB={false} RMB="$"/>
-<MoneyFormatText text="￥1200000" bigTextFontSize={20} smallTextFontSize={12} hasRMB={true} RMB="$" textColor="red"/>
-<MoneyFormatText text="￥1200000" bigTextFontSize={20} smallTextFontSize={12} hasRMB={true} RMB="$" textColor="black"/>
-<MoneyFormatText text="￥1200000" bigTextFontSize={20} smallTextFontSize={12} hasRMB={true} RMB="$"/>
 
 ```
 
@@ -35,4 +29,4 @@ RMB              | string | Yes      |    "￥"   | the symbol of money
 
 ## To Do
 
-[https://github.com/wslcsok/React-Native-MoneyFormatText/issues](https://github.com/wslcsok/React-Native-MoneyFormatText/issues)
+[https://github.com/wslcsok/react-native-multiview/issues](https://github.com/wslcsok/react-native-multiview/issues)

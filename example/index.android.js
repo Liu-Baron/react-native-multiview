@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import {MultiView} from "react-native-multiview";
+import {PageStatus} from "react-native-multiview";
 
 export default class example extends Component {
     constructor(props) {
@@ -22,13 +23,37 @@ export default class example extends Component {
         }
     }
 
+    componentDidMount() {
+        let that = this;
+        setTimeout(() => {
+            that.setState({
+                status: PageStatus.empty,
+            });
+            setTimeout(() => {
+                that.setState({
+                    status: PageStatus.content,
+                });
+                setTimeout(() => {
+                    that.setState({
+                        status: PageStatus.loading,
+                    });
+                    setTimeout(() => {
+                        that.setState({
+                            status: PageStatus.error,
+                        })
+                    }, 2000);
+                }, 2000);
+            }, 2000);
+        }, 2000);
+    }
+
     render() {
 
         let that = this;
         return (
-            <MultiView status={that.state.status} emptyBgColor="red" errorBgColor="green">
+            <MultiView status={that.state.status} emptyBgColor="white" errorBgColor="white" emptyText="你还没有添加商品呦"
+                       errorText="网络错误">
                 <View style={styles.container}>
-                    <MoneyFormatText text="120000"/>
                     <Text style={styles.welcome}>
                         Welcome to React Native!
                     </Text>
