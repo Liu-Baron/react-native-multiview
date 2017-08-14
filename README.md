@@ -90,8 +90,8 @@ initHintStyle               | style  | Yes      |                    | The style
 loadingHintStyle            | style  | Yes      |                    | The style of loading page loadingHint
 initIndicatorColor          | color  | Yes      |                    | The color of init page ActivityIndicator
 loadingIndicatorColor       | color  | Yes      |                    | The color of loading page ActivityIndicator
-initContainerBgColor        | color  | Yes      |                    | The backgroundcolor init page ActivityIndicator container
-initContainerBgColor        | color  | Yes      |                    | The backgroundcolor loading page ActivityIndicator container
+initContainerBgColor        | color  | Yes      |                    | The backgroundcolor of init page ActivityIndicator container
+initContainerBgColor        | color  | Yes      |                    | The backgroundcolor of loading page ActivityIndicator container
 
 
 ## To Do
