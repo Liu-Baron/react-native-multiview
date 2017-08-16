@@ -69,15 +69,15 @@ import {PageStatus} from "react-native-multiview";
 
 Prop                    | Type   | Optional |     Default    | Description
 ------------------------| ------ | -------- |----------------| -----------
-status                      | string | Yes      |PageStatus.content| status determines the current display of that page,which includes{PageStatus.error,PageStatus.empty,PageStatus.content,PageStatus.init,PageStatus.loading}five status.   
+status                      | string | Yes      |PageStatus.content| status determines the current display of that page,<br>which includes{PageStatus.error,PageStatus.empty,<br>PageStatus.content,PageStatus.init,PageStatus.loading}<br>five status.  
 onEmptyPress                | func   | Yes      |                    | Click event of empty page button
 onErrorPress                | func   | Yes      |                    | Click event of error page button
 emptyImgSource              | source | Yes      |                    | Image of empty page show
 errorImgSource              | source | Yes      |                    | Image of error page show
 emptyText                   | string | Yes      |         ""         | Text of empty page desc
 errorText                   | string | Yes      |         ""         | Text of error page desc
-emptyBtnText                | string | Yes      |         ""         | Text of empty page button,Display when it is not empty,Default does not display
-errorBtnText                | string | Yes      |         ""         | Text of error page button,Display when it is not empty,Default does not display
+emptyBtnText                | string | Yes      |         ""         | Text of empty page button,Display when it is not empty,<br>Default does not display
+errorBtnText                | string | Yes      |         ""         | Text of error page button,Display when it is not empty,<br>Default does not display
 emptyTextStyle              | style  | Yes      |                    | The style of empty page text
 errorTextStyle              | style  | Yes      |                    | The style of error page text
 emptyButtonStyle            | style  | Yes      |                    | The style of empty page button
